@@ -78,21 +78,21 @@ export async function _handleExecute(chatExecuteMode: ChatExecuteMode, conversat
     case 'append-user':
       return true;
 
-    case 'generate-image':
-      // verify we were called with a single DMessageTextContent
-      if (!isContentFragment(firstFragment) || !isTextPart(firstFragment.part))
-        return false;
-      const imagePrompt = firstFragment.part.text;
-      cHandler.messageFragmentReplace(lastMessage.id, firstFragment.fId, createTextContentFragment(textToDrawCommand(imagePrompt)), true);
-      return await runImageGenerationUpdatingState(cHandler, imagePrompt);
+    // case 'generate-image':
+    //   // verify we were called with a single DMessageTextContent
+    //   if (!isContentFragment(firstFragment) || !isTextPart(firstFragment.part))
+    //     return false;
+    //   const imagePrompt = firstFragment.part.text;
+    //   cHandler.messageFragmentReplace(lastMessage.id, firstFragment.fId, createTextContentFragment(textToDrawCommand(imagePrompt)), true);
+    //   return await runImageGenerationUpdatingState(cHandler, imagePrompt);
 
-    case 'react-content':
-      // verify we were called with a single DMessageTextContent
-      if (!isContentFragment(firstFragment) || !isTextPart(firstFragment.part))
-        return false;
-      const reactPrompt = firstFragment.part.text;
-      cHandler.messageFragmentReplace(lastMessage.id, firstFragment.fId, createTextContentFragment(textToDrawCommand(reactPrompt)), true);
-      return await runReActUpdatingState(cHandler, reactPrompt, chatLLMId, lastMessage.id);
+    // case 'react-content':
+    //   // verify we were called with a single DMessageTextContent
+    //   if (!isContentFragment(firstFragment) || !isTextPart(firstFragment.part))
+    //     return false;
+    //   const reactPrompt = firstFragment.part.text;
+    //   cHandler.messageFragmentReplace(lastMessage.id, firstFragment.fId, createTextContentFragment(textToDrawCommand(reactPrompt)), true);
+    //   return await runReActUpdatingState(cHandler, reactPrompt, chatLLMId, lastMessage.id);
 
     default:
       console.log('Chat execute: issue running', chatExecuteMode, conversationId, lastMessage);

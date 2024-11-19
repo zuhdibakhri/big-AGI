@@ -312,7 +312,7 @@ export function AppChat() {
         .then((imaginedPrompt) => {
           // Replace the placeholder with the message to draw, then execute the draw
           cHandler.messageFragmentReplace(userImagineMessage.id, userImagineMessage.fragments[0].fId, createTextContentFragment(imaginedPrompt), true);
-          return handleExecuteAndOutcome('generate-image', conversationId, 'chat-imagine-from-text'); // append message for 'imagine', then generate-image
+          return handleExecuteAndOutcome('generate-content', conversationId, 'chat-imagine-from-text'); // append message for 'imagine', then generate-image
         })
         .catch((error: any) => {
           // Replace the placeholder with the error message
